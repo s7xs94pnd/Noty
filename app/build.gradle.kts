@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.noty"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.noty"
@@ -39,7 +39,16 @@ android {
 }
 
 dependencies {
-
+//navigation
+    val nav_version = "2.8.4"
+    implementation("androidx.navigation:navigation-fragment:$nav_version")
+    implementation("androidx.navigation:navigation-ui:$nav_version")
+    //lottie animations
+    val lottieVersion = "3.4.0"
+    implementation("com.airbnb.android:lottie:$lottieVersion")
+    //Dots tab layout
+    implementation("com.tbuonomo:dotsindicator:5.1.0")
+    //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
