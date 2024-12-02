@@ -1,15 +1,16 @@
-package com.example.noty.ui.fragments
+package com.example.noty.ui.fragments.onboard
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.noty.R
 import com.example.noty.databinding.FragmentOnBoardBinding
-import com.example.noty.databinding.FragmentViewPagerOnBoardBinding
 import com.example.noty.ui.adapters.ViewPagerOnBoardAdapter
+import com.example.noty.ui.utils.PreferenceHelper
 
 class OnBoardFragment : Fragment() {
 
@@ -64,6 +65,11 @@ class OnBoardFragment : Fragment() {
             binding.viewpager2.setCurrentItem(2, true)
         }
         binding.btnStart.setOnClickListener {
+            findNavController().navigate(R.id.action_onBoardFragment_to_homeNotyFragment)
+            // TODO: animation transition
+            val sharedPreferences=PreferenceHelper()
+            sharedPreferences.helper(requireContext())
+            sharedPreferences.isOnboardShown = true
         }
     }
 
