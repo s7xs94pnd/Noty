@@ -1,4 +1,4 @@
-package com.example.noty.ui.fragments
+package com.example.noty.ui.fragments.onboard
 
 import android.os.Bundle
 import android.util.Log

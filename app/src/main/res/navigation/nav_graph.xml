@@ -7,7 +7,16 @@
 
     <fragment
         android:id="@+id/onBoardFragment"
-        android:name="com.example.noty.ui.fragments.OnBoardFragment"
+        android:name="com.example.noty.ui.fragments.onboard.OnBoardFragment"
         android:label="fragment_on_board"
-        tools:layout="@layout/fragment_on_board" />
+        tools:layout="@layout/fragment_on_board" >
+        <action
+            android:id="@+id/action_onBoardFragment_to_homeNotyFragment"
+            app:destination="@id/homeNotyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeNotyFragment"
+        android:name="com.example.noty.ui.fragments.noty.HomeNotyFragment"
+        android:label="fragment_home_noty"
+        tools:layout="@layout/fragment_home_noty" />
 </navigation>
