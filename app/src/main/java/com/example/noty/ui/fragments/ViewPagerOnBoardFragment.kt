@@ -1,6 +1,7 @@
 package com.example.noty.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -15,9 +16,10 @@ class ViewPagerOnBoardFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_view_pager_on_board, container, false)
+    ): View {
+        binding = FragmentViewPagerOnBoardBinding.inflate(inflater,container,false)
+        return binding.root
+        Log.d("fff", "ViewPagerOnBoardFragment: ")
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,23 +28,21 @@ class ViewPagerOnBoardFragment : Fragment() {
     }
 
     private fun initChanges() = with(binding) {
-        when (requireArguments().getInt("OnBoardPosition", 0)) {
-            0 -> {
-                title1.text = "Manage your \n notes easily"
+        when(requireArguments().getInt("onBoardPosition" ,0)){
+            0->{
+                title1.text ="Manage your \n notes easily"
                 title2.text = "A completely easy way to manage and customize \n your notes."
                 lottie.setAnimation(R.raw.anim_onboard_1)
                 lottie.playAnimation()
             }
-
-            1 -> {
-                title1.text = "Organize your \n thougts"
+            1->{
+                title1.text ="Organize your \n thougts"
                 title2.text = "Most beautiful note taking application."
                 lottie.setAnimation(R.raw.anim_onboard_2)
                 lottie.playAnimation()
             }
-
-            2 -> {
-                title1.text = "Create cards and \n easy styling"
+            2->{
+                title1.text ="Create cards and \n easy styling"
                 title2.text = "Making your content legible has never \n been easier."
                 lottie.setAnimation(R.raw.anim_onboard_3)
                 lottie.playAnimation()

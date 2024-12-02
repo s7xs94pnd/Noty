@@ -1,16 +1,18 @@
 package com.example.noty.ui.adapters
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.noty.ui.fragments.OnBoardFragment
+import com.example.noty.ui.fragments.ViewPagerOnBoardFragment
 
 class ViewPagerOnBoardAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int = 3
 
 
-    override fun createFragment(position: Int) = OnBoardFragment().apply {
-        arguments = Bundle().apply { putInt("OnBoardPosition", position) }
+    override fun createFragment(position: Int) = ViewPagerOnBoardFragment().apply {
+        arguments = Bundle().apply { putInt("onBoardPosition", position) }
     }
 
 // тоже самое

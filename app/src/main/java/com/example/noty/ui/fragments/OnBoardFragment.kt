@@ -29,7 +29,7 @@ class OnBoardFragment : Fragment() {
     }
 
     private fun setUpListeners() {
-        binding.Viewpager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        binding.viewpager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 when (position) {
@@ -55,20 +55,20 @@ class OnBoardFragment : Fragment() {
         })
 
         binding.tvback.setOnClickListener {
-            binding.Viewpager2.setCurrentItem(binding.Viewpager2.currentItem - 1, true)
+            binding.viewpager2.setCurrentItem(binding.viewpager2.currentItem - 1, true)
         }
         binding.btnNext.setOnClickListener {
-            binding.Viewpager2.setCurrentItem(binding.Viewpager2.currentItem + 1, true)
+            binding.viewpager2.setCurrentItem(binding.viewpager2.currentItem + 1, true)
         }
         binding.tvSkip.setOnClickListener {
-            binding.Viewpager2.setCurrentItem(2, true)
+            binding.viewpager2.setCurrentItem(2, true)
         }
         binding.btnStart.setOnClickListener {
         }
     }
 
     private fun initViewPager2() {
-        binding.Viewpager2.adapter = ViewPagerOnBoardAdapter(this)
-        binding.dots.attachTo(binding.Viewpager2)
+        binding.viewpager2.adapter = ViewPagerOnBoardAdapter(this)
+        binding.dots.attachTo(binding.viewpager2)
     }
 }
