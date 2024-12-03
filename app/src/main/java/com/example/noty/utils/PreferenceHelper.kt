@@ -1,4 +1,4 @@
-package com.example.noty.ui.utils
+package com.example.noty.utils
 
 import android.content.Context
 import android.content.SharedPreferences

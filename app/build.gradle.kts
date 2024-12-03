@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -48,6 +49,11 @@ dependencies {
     implementation("com.airbnb.android:lottie:$lottieVersion")
     //Dots tab layout
     implementation("com.tbuonomo:dotsindicator:5.1.0")
+    //room
+    val room_version = "2.6.1"
+    implementation("androidx.room:room-ktx:$room_version")
+    //ksp
+    ksp("androidx.room:room-compiler:2.5.0")
     //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
