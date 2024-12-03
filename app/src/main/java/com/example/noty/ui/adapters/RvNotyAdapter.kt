@@ -2,13 +2,17 @@ package com.example.noty.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
+import android.widget.AdapterView.OnItemLongClickListener
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.noty.data.models.NotyModel
 import com.example.noty.databinding.ItemNotyBinding
+import com.example.noty.ui.OnItemClick
 
-class RvNotyAdapter : ListAdapter<NotyModel, RvNotyAdapter.NotyViewHolder>(DiffCallBack()) {
+class RvNotyAdapter(private val itemLongClick: OnItemClick,private val itemClick: OnItemClick) : ListAdapter<NotyModel, RvNotyAdapter.NotyViewHolder>(DiffCallBack()) {
+
 //DiffCallBack() — это объект, который передаётся в ListAdapter для сравнения элементов списка.
 
     inner class NotyViewHolder(private val binding: ItemNotyBinding) :
@@ -41,6 +45,14 @@ class RvNotyAdapter : ListAdapter<NotyModel, RvNotyAdapter.NotyViewHolder>(DiffC
 
     override fun onBindViewHolder(holder: NotyViewHolder, position: Int) {
         holder.onBind(getItem(position))
+        holder.itemView.setOnClickListener{
+            itemClick.onClick(getItem(position))
+        }
+        holder.itemView.setOnLongClickListener{
+            itemLongClick.onLongClick(getItem(position))
+            // TODO: зачем тут нужно тру
+            true
+        }
     }
 
 /*	RecyclerView с помощью DiffUtil вычисляет разницу между старым и новым списками.

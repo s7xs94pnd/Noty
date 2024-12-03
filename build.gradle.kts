@@ -4,5 +4,6 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     //ksp
     id("com.google.devtools.ksp") version "2.0.21-1.0.27" apply false
-
+        //safe args
+    id("androidx.navigation.safeargs.kotlin") version "2.8.4" apply false
 }
