@@ -18,5 +18,14 @@
         android:id="@+id/homeNotyFragment"
         android:name="com.example.noty.ui.fragments.noty.HomeNotyFragment"
         android:label="fragment_home_noty"
-        tools:layout="@layout/fragment_home_noty" />
+        tools:layout="@layout/fragment_home_noty" >
+        <action
+            android:id="@+id/action_homeNotyFragment_to_detailNotyFragment"
+            app:destination="@id/detailNotyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailNotyFragment"
+        android:name="com.example.noty.ui.fragments.noty.DetailNotyFragment"
+        android:label="fragment_detail_noty"
+        tools:layout="@layout/fragment_detail_noty" />
 </navigation>

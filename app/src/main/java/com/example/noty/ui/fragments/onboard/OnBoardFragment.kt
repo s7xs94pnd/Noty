@@ -10,7 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.noty.R
 import com.example.noty.databinding.FragmentOnBoardBinding
 import com.example.noty.ui.adapters.ViewPagerOnBoardAdapter
-import com.example.noty.ui.utils.PreferenceHelper
+import com.example.noty.utils.PreferenceHelper
 
 class OnBoardFragment : Fragment() {
 
@@ -67,7 +67,7 @@ class OnBoardFragment : Fragment() {
         binding.btnStart.setOnClickListener {
             findNavController().navigate(R.id.action_onBoardFragment_to_homeNotyFragment)
             // TODO: animation transition
-            val sharedPreferences=PreferenceHelper()
+            val sharedPreferences= PreferenceHelper()
             sharedPreferences.helper(requireContext())
             sharedPreferences.isOnboardShown = true
         }
