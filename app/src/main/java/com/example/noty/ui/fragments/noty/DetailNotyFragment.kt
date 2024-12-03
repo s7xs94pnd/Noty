@@ -3,29 +3,31 @@ package com.example.noty.ui.fragments.noty
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.noty.App
-import com.example.noty.R
 import com.example.noty.data.models.NotyModel
 import com.example.noty.databinding.FragmentDetailNotyBinding
-import com.example.noty.databinding.ItemNotyBinding
 import java.text.SimpleDateFormat
 import java.util.Locale
 import java.util.Timer
 import java.util.TimerTask
-import java.util.zip.Inflater
+import kotlin.math.log
 
 class DetailNotyFragment : Fragment() {
+
     private lateinit var binding: FragmentDetailNotyBinding
+    private var itemID = -1
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentDetailNotyBinding.inflate(inflater,container,false)
+        binding = FragmentDetailNotyBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -33,10 +35,26 @@ class DetailNotyFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpListeners()
         startUpdatingTime()
+        updateData()
     }
 
-    private fun setUpListeners()= with(binding){
-        val textWatcher =object :TextWatcher{
+    private fun updateData() {
+        arguments?.let { args ->
+            itemID = args.getInt("itemId", -1)
+        }
+        if (itemID != -1) {
+            val itemFromDataBase = App.appDataBaseRoom?.notyDao()?.getById(itemID)
+            itemFromDataBase?.let { item ->
+                binding.apply {
+                    edTitle.setText(item.title)
+                    edDesc.setText(item.description)
+                }
+            }
+        }
+    }
+
+    private fun setUpListeners() = with(binding) {
+        val textWatcher = object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
@@ -45,9 +63,9 @@ class DetailNotyFragment : Fragment() {
             }
 
             private fun inputsState() {
-                if (edDesc.text.isNotEmpty()&&edTitle.text.isNotEmpty()){
+                if (edDesc.text.isNotEmpty() && edTitle.text.isNotEmpty()) {
                     tvAddText.visibility = View.VISIBLE
-                }else{
+                } else {
                     tvAddText.visibility = View.GONE
                 }
             }
@@ -61,11 +79,20 @@ class DetailNotyFragment : Fragment() {
         btnBack.setOnClickListener {
             findNavController().navigateUp()
         }
-        tvAddText.setOnClickListener{
-           val title = edTitle.text.toString()
-           val description = edDesc.text.toString()
-           val time = getCurrentDateTime()
-            App.appDataBaseRoom?.notyDao()?.insert(NotyModel(title,description,time))
+        tvAddText.setOnClickListener {
+            val title = edTitle.text.toString()
+            val description = edDesc.text.toString()
+            val time = getCurrentDateTime()
+            if (itemID != -1) {
+                val updatedItem = NotyModel(title, description, time)
+                updatedItem.id = itemID
+                Log.d("ttt", "updatedItem: ${updatedItem.id}")
+                App.appDataBaseRoom?.notyDao()?.update(updatedItem)
+            } else {
+                Log.d("ttt", "insert: ")
+                App.appDataBaseRoom?.notyDao()?.insert(NotyModel(title, description, time))
+
+            }
             findNavController().navigateUp()
         }
     }

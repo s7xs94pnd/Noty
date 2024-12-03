@@ -1,7 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    //ksp
     id("com.google.devtools.ksp")
+    //Safe Args
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -54,7 +57,8 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
     //ksp
     ksp("androidx.room:room-compiler:2.5.0")
-    //
+    //safe Args
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
