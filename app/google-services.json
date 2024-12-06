@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "470492537993",
+    "project_id": "noty-49fae",
+    "storage_bucket": "noty-49fae.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470492537993:android:f026c2a03d043c1e8d5258",
+        "android_client_info": {
+          "package_name": "com.example.noty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA08_O4qmySe-eR5POrqFuFHhL15WVu7Xk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

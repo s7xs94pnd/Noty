@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setNavigation()
     }
+
     private fun setNavigation() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
@@ -20,8 +21,10 @@ class MainActivity : AppCompatActivity() {
         val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
         val sharedPreferences = PreferenceHelper()
         sharedPreferences.helper(this)
-        if (sharedPreferences.isOnboardShown) {
+        if (sharedPreferences.isOnboardShown && sharedPreferences.isSignedIn) {
             navGraph.setStartDestination(R.id.homeNotyFragment)
+        } else if (sharedPreferences.isOnboardShown) {
+            navGraph.setStartDestination(R.id.signInFragment)
         } else {
             navGraph.setStartDestination(R.id.onBoardFragment)
         }
