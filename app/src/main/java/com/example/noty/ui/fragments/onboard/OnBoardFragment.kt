@@ -65,7 +65,7 @@ class OnBoardFragment : Fragment() {
             binding.viewpager2.setCurrentItem(2, true)
         }
         binding.btnStart.setOnClickListener {
-            findNavController().navigate(R.id.action_onBoardFragment_to_homeNotyFragment)
+            findNavController().navigate(R.id.action_onBoardFragment_to_signInFragment)
             // TODO: animation transition
             val sharedPreferences= PreferenceHelper()
             sharedPreferences.helper(requireContext())

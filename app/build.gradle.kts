@@ -5,6 +5,8 @@ plugins {
     id("com.google.devtools.ksp")
     //Safe Args
     id("androidx.navigation.safeargs.kotlin")
+    //Fire Base
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -43,7 +45,9 @@ android {
 }
 
 dependencies {
-//navigation
+implementation(libs.firebase.auth)
+    implementation(libs.googleid)
+    //navigation //safe Args
     val nav_version = "2.8.4"
     implementation("androidx.navigation:navigation-fragment:$nav_version")
     implementation("androidx.navigation:navigation-ui:$nav_version")
@@ -57,8 +61,11 @@ dependencies {
     implementation("androidx.room:room-ktx:$room_version")
     //ksp
     ksp("androidx.room:room-compiler:2.5.0")
-    //safe Args
-
+    //fire base
+    implementation(platform("com.google.firebase:firebase-bom:33.6.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
+    //
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
